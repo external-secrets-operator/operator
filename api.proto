@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package api;
+
+option go_package = ".;api";
+
+service Backend {
+    rpc GetSecrets (SecretsRequest) returns (SecretsResponse) {
+    }
+}
+
+message SecretsRequest {
+    repeated string keys = 1;
+}
+
+message SecretsResponse {
+    message Secret {
+        string key = 1;
+        repeated bytes values = 2;
+    }
+
+    repeated Secret secrets = 1;
+}
