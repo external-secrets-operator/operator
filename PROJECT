@@ -2,6 +2,16 @@ domain: external-secrets-operator.app
 layout: go.kubebuilder.io/v2
 projectName: operator
 repo: github.com/external-secrets-operator/operator
+resources:
+- group: api
+  kind: ExternalSecret
+  version: v1alpha1
+- group: api
+  kind: ExternalConfigMap
+  version: v1alpha1
+- group: api
+  kind: ExternalBackend
+  version: v1alpha1
 version: 3-alpha
 plugins:
   go.sdk.operatorframework.io/v2-alpha: {}

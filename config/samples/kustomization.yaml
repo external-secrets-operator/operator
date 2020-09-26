@@ -1,0 +1,6 @@
+## Append samples you want in your CSV to this file as resources ##
+resources:
+- api_v1alpha1_externalsecret.yaml
+- api_v1alpha1_externalconfigmap.yaml
+- api_v1alpha1_externalbackend.yaml
+# +kubebuilder:scaffold:manifestskustomizesamples

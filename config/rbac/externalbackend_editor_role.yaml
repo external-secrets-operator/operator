@@ -1,0 +1,24 @@
+# permissions for end users to edit externalbackends.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: externalbackend-editor-role
+rules:
+- apiGroups:
+  - api.external-secrets-operator.app
+  resources:
+  - externalbackends
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - api.external-secrets-operator.app
+  resources:
+  - externalbackends/status
+  verbs:
+  - get
