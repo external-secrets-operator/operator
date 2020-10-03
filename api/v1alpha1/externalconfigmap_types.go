@@ -28,8 +28,17 @@ type ExternalConfigMapSpec struct {
 	// INSERT ADDITIONAL SPEC FIELDS - desired state of cluster
 	// Important: Run "make" to regenerate code after modifying this file
 
-	// Foo is an example field of ExternalConfigMap. Edit ExternalConfigMap_types.go to remove/update
-	Foo string `json:"foo,omitempty"`
+	// Name of the ExternalBackend resource that is used to get values.
+	// +kubebuilder:validation:MinLength=1
+	BackendName string `json:"backendName"`
+
+	// Keys in the backend that hold values.
+	// +kubebuilder:validation:MinItems=1
+	Keys []string `json:"keys"`
+
+	// Golang template that generates the entire key-value map
+	// +optional
+	Template string `json:"template"`
 }
 
 // ExternalConfigMapStatus defines the observed state of ExternalConfigMap

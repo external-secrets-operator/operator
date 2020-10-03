@@ -28,8 +28,17 @@ type ExternalBackendSpec struct {
 	// INSERT ADDITIONAL SPEC FIELDS - desired state of cluster
 	// Important: Run "make" to regenerate code after modifying this file
 
-	// Foo is an example field of ExternalBackend. Edit ExternalBackend_types.go to remove/update
-	Foo string `json:"foo,omitempty"`
+	// URL to GRPC endpoint
+	// +kubebuilder:validation:MinLength=1
+	Target string `json:"target"`
+
+	// Connection timeout
+	// +kubebuilder:default:=3000
+	Timeout metav1.Duration `json:"timeout,omitempty"`
+
+	// Use insecure connection
+	// +kubebuilder:default:=true
+	Insecure bool `json:"insecure,omitempty"`
 }
 
 // ExternalBackendStatus defines the observed state of ExternalBackend
