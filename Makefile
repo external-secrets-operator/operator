@@ -133,3 +133,16 @@ bundle: manifests
 .PHONY: bundle-build
 bundle-build:
 	docker build -f bundle.Dockerfile -t $(BUNDLE_IMG) .
+
+protoc:
+ifeq (, $(shell which protoc))
+	$(error "No protoc in $(PATH), consider installing it from https://github.com/protocolbuffers/protobuf#protocol-compiler-installation")
+endif
+ifeq (, $(shell which protoc-gen-go))
+	go install google.golang.org/protobuf/cmd/protoc-gen-go
+endif
+ifeq (, $(shell which protoc-gen-go-grpc))
+	go install google.golang.org/grpc/cmd/protoc-gen-go-grpc
+endif
+	mkdir -p generated/api
+	protoc --proto_path=. --go_out=generated/api --go-grpc_out=generated/api api.proto
